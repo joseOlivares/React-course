@@ -1,0 +1,12 @@
+.customButton {
+    color: #61dafb;
+    background-color: transparent;
+    border: 2px solid #61dafb;  
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer; 
+}
+
+.m-l {
+    margin-left: 10px;
+}
