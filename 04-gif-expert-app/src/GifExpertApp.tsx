@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { AddCategory } from "./components/AddCategory";
-import { GifGrid } from "./components/GifGrid";
+import { AddCategory, GifGrid } from "./components"; //usando archivo de barril index.ts
+
 
 
 export const GifExpertApp = () => {
@@ -13,13 +13,17 @@ export const GifExpertApp = () => {
     setCategories([newCategory, ...categories]);
   }
 
+  const onClearCategories = () => {
+    setCategories([]);
+  }
+
   return (
     <>
         {/* Titulo */}
         <h1>GifExpertApp</h1>
 
         {/* Input */}
-        <AddCategory onNewCategory={(event) =>onAddCategory(event)} /> 
+        <AddCategory onNewCategory={(event) =>onAddCategory(event)} onClearCategories={onClearCategories} /> 
 
         {/* Listado de gifs */}
 

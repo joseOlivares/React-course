@@ -3,9 +3,10 @@ import { useState } from "react"
 
 interface AddCategoryProps { //creamos un ainterfaz que le diga a Typescript que onNewCategory es una function
     onNewCategory: (category: string) => void;
+    onClearCategories: () => void;
 }
 
-export const AddCategory = ({ onNewCategory }: AddCategoryProps) => {
+export const AddCategory = ({ onNewCategory, onClearCategories }: AddCategoryProps) => {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -24,6 +25,8 @@ export const AddCategory = ({ onNewCategory }: AddCategoryProps) => {
         setInputValue(''); //limpiamos el input
     }
 
+ 
+
   return (
     <form onSubmit={(event) => onSubmit(event)}>
         <div className="row mt-3">
@@ -31,7 +34,7 @@ export const AddCategory = ({ onNewCategory }: AddCategoryProps) => {
                 <input type="text" className="form-control"  placeholder="Buscar gifs" value={inputValue} onChange={onInputChange}/>
             </div>
             <div className="col-auto">
-            <button type="submit" className="btn btn-primary" > Agregar</button>
+                <button className="btn btn-primary"  onClick={onClearCategories}>Limpiar</button>
             </div>
 
         </div>       
