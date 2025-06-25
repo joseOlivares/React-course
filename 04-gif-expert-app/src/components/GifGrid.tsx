@@ -1,38 +1,47 @@
+//import { useState, useEffect } from "react"
+//import { getGifs } from "../helpers/getGifs";
+import { GifItem } from "./GifItem";
+import { useFetchGifs } from "../hooks/useFetchGifs"; //custom hook
+import { Loading } from "./Loading";
 
-import { tenorApiKey } from "../apikey/tenorApiKey";
 
 interface GifGridProps {
   category: string;
 }
 
+
+
+
 export const GifGrid = ({ category }: GifGridProps) => {
 
+  const {images, isLoading} = useFetchGifs(category);
 
-const getGifs = async() => {
-  try {
-    const url = `https://tenor.googleapis.com/v2/search?q=${category}&key=${tenorApiKey}&limit=10`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-    console.log(data); // log the response data to the console
-    const gifs = data.results.map((img: any) => {
-      return {
-        id: img.id,
-        title: img.title,
-        url: img.media_formats.gif.url,
-        description: img.content_description
-      }
-    })
-    console.log(gifs);
-  } catch (error) {
-    console.error(error); // log any errors to the console
-  }
-}
+     /*
+    const [images, setImages] = useState<any[]>([]);
+     const getImages = async() => {
+        const imgs = await getGifs(category);
+        setImages(imgs);
+    }
 
-    getGifs();
+
+    useEffect(() => {
+        getImages();
+    }, []);
+  */
 
   return (
     <div className="row">
         <h3>{category}</h3>
+        { isLoading && <Loading /> }
+        {    
+            images.map(image => {
+                return (
+                    <div className="col-4 mt-3" key={image.id}>
+                       <GifItem {...image} /> {/*spread operator para pasar todas las propiedades */}
+                    </div>
+                )
+            })
+        }
     </div>
   )
 }
