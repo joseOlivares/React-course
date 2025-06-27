@@ -20,7 +20,7 @@ export const useFetchGifs = (category:string) => {
     
 
     return {
-        images,  //podria ser images: images
+        images,  //podria ser images: images pero como la propiedad es igual se puede omitir
         isLoading: isLoading
     }
 
