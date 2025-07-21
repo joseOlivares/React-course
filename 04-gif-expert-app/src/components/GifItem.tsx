@@ -1,9 +1,9 @@
 
 interface GifItemProps {
     id: string;
-    title?: string;
+    title: string;
     url: string;
-    description: string;
+    description?: string;
     tag: string;
 }
   
